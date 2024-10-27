@@ -9,24 +9,24 @@ import (
 	"qrgo/platform/database"
 	"qrgo/platform/router"
 
-	"github.com/joho/godotenv"
+	//"github.com/joho/godotenv"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+		// log.Fatal("Error loading .env file")
+	// }
 
 	auth, err := authenticator.New()
 	if err != nil {
 		log.Fatalf("Failed to initialize the authenticator: %v", err)
 	}
 
-    m2mauth, err := authenticator.NewM2M()
-    if err != nil {
-        log.Fatalf("Failed to initialize the M2M authenticator: %v", err)
-    }
+	m2mauth, err := authenticator.NewM2M()
+	if err != nil {
+		log.Fatalf("Failed to initialize the M2M authenticator: %v", err)
+	}
 
 	db, err := database.New(os.Getenv("DB_CONN_STR"))
 	if err != nil {
