@@ -20,7 +20,7 @@ func Handler(ctx *gin.Context) {
 		scheme = "https"
 	}
 
-	returnTo, err := url.Parse(scheme + "://" + ctx.Request.Host)
+	returnTo, err := url.Parse(scheme + "://" + os.Getenv("BASE_URL") + "/home")
 	if err != nil {
 		ctx.String(http.StatusInternalServerError, err.Error())
 		return
