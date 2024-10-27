@@ -42,13 +42,6 @@ func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 			return
 		}
 
-		id := session.Get("id").(string)
-		retUrl := ""
-		if id == "" {
-			retUrl = "/home"
-		} else {
-			retUrl = "/info/" + id
-		}
-		ctx.Redirect(http.StatusTemporaryRedirect, retUrl)
+		ctx.Redirect(http.StatusTemporaryRedirect, "/home")
 	}
 }
