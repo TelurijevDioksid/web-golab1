@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>goQR</title>
+    <script>
+        window.onload = () => {
+            const date = new Date({{.CreatedAt}})
+            const dateStr = date.toLocaleDateString() + ", " + date.toLocaleTimeString()
+            document.getElementById("createdAt").textContent = "Created at: " + dateStr
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            color: #000000;
+        }
+
+        h3 {
+            font-weight: 400;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            background-color: #000000;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .wrap {
+            width: 60%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 60%;
+            max-width: 600px;
+            gap: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Oib:        {{.Oib}}</h3>
+    <h3>First name: {{.FirstName}}</h3>
+    <h3>Last name:  {{.LastName}}</h3>
+    <h3 id="createdAt"></h3>
+    <br><br>
+    <h3>Logged in username: {{.LoggedInUser}}</h3>
+</body>
+
+</html>
