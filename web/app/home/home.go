@@ -18,13 +18,16 @@ func Handler(db *database.PostgresStorage) gin.HandlerFunc {
 		}
 
 		msg := "Log in"
+		url := "/login"
 		if sessions.Default(ctx).Get("profile") != nil {
 			msg = "Log out"
+			url = "/logout"
 		}
 
 		ctx.HTML(http.StatusOK, "home.tmpl", gin.H{
 			"Total":  total,
 			"BtnMsg": msg,
+			"Url":    url,
 		})
 	}
 }
