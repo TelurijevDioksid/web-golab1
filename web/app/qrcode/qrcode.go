@@ -19,11 +19,11 @@ func Handler(db *database.PostgresStorage, m2mauth *authenticator.M2MAuthenticat
 			return
 		}
 
-		// authHeader := ctx.GetHeader("Authorization")
-		// if err := m2mauth.VerifyM2MToken(ctx.Request.Context(), authHeader); err != nil {
-			// ctx.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
-			// return
-		// }
+		authHeader := ctx.GetHeader("Authorization")
+		if err := m2mauth.VerifyM2MToken(ctx.Request.Context(), authHeader); err != nil {
+			ctx.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+			return
+		}
 
 		if dto.Vatin == "" {
 			ctx.JSON(http.StatusBadRequest, gin.H{"error": "VATIN is required"})

@@ -16,7 +16,6 @@ import (
 	"qrgo/web/app/login"
 	"qrgo/web/app/logout"
 	"qrgo/web/app/qrcode"
-	"qrgo/web/app/user"
 )
 
 func New(m2mauth *authenticator.M2MAuthenticator, auth *authenticator.Authenticator, db *database.PostgresStorage) *gin.Engine {
@@ -33,10 +32,8 @@ func New(m2mauth *authenticator.M2MAuthenticator, auth *authenticator.Authentica
 	router.GET("/home", home.Handler(db))
 	router.POST("/gen", qrcode.Handler(db, m2mauth))
 	router.GET("/info/:id", middleware.IsAuthenticated, info.Handler(db))
-
 	router.GET("/login", login.Handler(auth))
 	router.GET("/callback", callback.Handler(auth))
-	router.GET("/user", middleware.IsAuthenticated, user.Handler)
 	router.GET("/logout", logout.Handler)
 
 	return router

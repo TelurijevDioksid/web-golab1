@@ -11,7 +11,6 @@ import (
 	"qrgo/platform/authenticator"
 )
 
-// Handler for our login.
 func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		state, err := generateRandomState()
@@ -20,7 +19,6 @@ func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 			return
 		}
 
-		// Save the state inside the session.
 		session := sessions.Default(ctx)
 		session.Set("state", state)
 		if err := session.Save(); err != nil {

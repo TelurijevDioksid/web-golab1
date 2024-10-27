@@ -1,5 +1,3 @@
-// web/app/callback/callback.go
-
 package callback
 
 import (
@@ -44,7 +42,13 @@ func Handler(auth *authenticator.Authenticator) gin.HandlerFunc {
 			return
 		}
 
-		// Redirect to logged in page.
-		ctx.Redirect(http.StatusTemporaryRedirect, "/user")
+		id := session.Get("id").(string)
+		retUrl := ""
+		if id == "" {
+			retUrl = "/home"
+		} else {
+			retUrl = "/info/" + id
+		}
+		ctx.Redirect(http.StatusTemporaryRedirect, retUrl)
 	}
 }
