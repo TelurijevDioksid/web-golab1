@@ -27,7 +27,7 @@ func Handler(db *database.PostgresStorage) gin.HandlerFunc {
 		ctx.HTML(http.StatusOK, "home.tmpl", gin.H{
 			"Total":  total,
 			"BtnMsg": msg,
-			"Url":    url,
+			"BtnUrl":    url,
 		})
 	}
 }
